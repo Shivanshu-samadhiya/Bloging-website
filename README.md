@@ -1,4 +1,4 @@
-BLOGGING WEBSITE 
+# BLOGGING WEBSITE 
 
 Excited to share my latest project 'Blogging'- a Back-end Socal media app application that I had the pleasure of deploying 🚀
 
