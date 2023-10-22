@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+  <style>
+   .main{
+     width: 100%;
+     height: 100vh;
+    background-color:#212529;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+   </style>
+  <body>
+    <% include ./partials/header.ejs %>
+    <div class="main">
+    <div class="container bg-dark text-white rounded border border-light py-4">
+        <h2>Register The User Here </h2>
+        <form action="/register" method="post"> 
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Username</label>
+                <input name="username" type="text" class="form-control" id="exampleInputPassword1">
+              </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input name="email" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Age</label>
+                <input name="age" type="text" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Passon</label>
+                <input name="Passon" type="text" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="fl d-flex gap-3">
+              <a href="/login"type="button" class="btn btn-primary btn-lg">Login Now</a>
+               <input type="submit" class="btn btn-primary btn-lg" value="Create your account"> 
+            </div>  
+          </form>
+    </div>
+</div>
+<% include ./partials/footer.ejs %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>
+
