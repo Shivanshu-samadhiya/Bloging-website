@@ -1,8 +1,8 @@
 # BLOGGING WEBSITE 
 
-Excited to share my latest project 'Blogging'- a Back-end Socal media app application that I had the pleasure of deploying 🚀
+Excited to share my latest project 'Blogging'- a Back-End Socal media app application that I had the pleasure of deploying 🚀
 
-Technology Used - HTML, CSS, javascript, Node JS, Express JS, MongoDB,passport JS and Nodemailer
+Technology Used - HTML, CSS, javascript, Node JS, Express JS, MongoDB, passport JS and Nodemailer
 
 Blogging web has some basic features like you experience in socal media, including:
 
