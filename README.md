@@ -10,6 +10,6 @@ Blogging web has some basic features like you experience in socal media, includi
 * 🗝️ Forgot Password: Implementing the Forgot Password Feature, used by Nodemailer, ensures the user 
 can easily reset their old password and log in with their new password on the profile page.
 * ✍️ Profile Management: Users update their  profile by changing their Profile picture and Updating information.
-* 🖼️ Blog Creation and Deletions: Users share their beautiful moments, and thoughts and manage blogs effortlessly.
+* 🖼️ Blog Creation and Deletions: Users share their amazing content and thoughts and manage blogs effortlessly.
 * 📄 Feed Page/profile page: Users see all of their Created blogs on the profile page and all people's blogs on the feed page.
 * ❤️ Socal Interactions: Users like/dislike their blogs like social media applications.
