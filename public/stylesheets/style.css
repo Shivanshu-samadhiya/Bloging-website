@@ -74,8 +74,16 @@ html,body{
     height: 100%;
     object-fit: cover;
 }
+.section{
+    display: flex;
+    gap: 5px;
+}
 .name{
     margin: 5px;
     display: flex;
-    gap: 5px;
+    justify-content: space-between;
+}
+.delete a{
+    padding: 4px 8px;
+    border-radius: none;
 }

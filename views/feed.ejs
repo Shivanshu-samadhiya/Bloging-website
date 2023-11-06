@@ -9,22 +9,24 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <style>
-  
+
 </style>
 <body>
   <% include ./partials/header.ejs %>
-    <div class="container  py-3">
+    <div class="container py-3">
       <h4 class="mb-4">Feed</h4>
       <p style="margin-top: -22px;">all post from all around the India.</p>
       <hr>
-      <div class="feed d-flex row ">
+      <div class="feed">
       <% allposts.reverse().forEach(function(post){ %>
         <div class="card m-3 p-2 col-md-6 col-lg-4 col-12 mt-3 col-6" style="width: 18rem;">
           <div class="name">
+            <div class="section">
             <div class="a"><img src=" ../images/uploads/<%= post.userid.image %>" class="card-img-top"></div>
             <h5 class="card-title">@<%= post.userid.username %></h5>
           </div>
-          <div class="card-bodyp p-0">
+          </div>
+          <div class="card-body p-0">
             <img  src="../images/uploads/<%= post.postimage %>"  style="height: 300px;" class="card-img-top" alt="">
             <p class="card-text mt-3"><%= post.data %></p>
             <p style="font-weight: 600;" class="text-primary">
@@ -34,7 +36,6 @@
               class="btn <%= post.likes.indexOf(user.id) === -1 ? 'btn-primary' : 'btn-danger' %>">
               <%= post.likes.indexOf(user.id)===-1 ? "Like" : "Unlike" %>
             </a>
-            <a href="/unlike/<%= post._id %>"class="btn btn-warning">Delete post</a>
           </div>
         </div>
         <% }) %>

@@ -52,21 +52,27 @@
           </div>
         </div>
       </div>
-      <div class="containera mt-4">
+      <div class="container mt-4">
         <h6 class="mb-3">All Posts By You.</h6>
+        <hr>
+        <h6 class="card-text mb-3 text-center">Your Post : <%= foundUser.posts.length %></h6>
         <div class="d-flex row">
         <% foundUser.posts.reverse().forEach(function(post){ %>
           <div class="card m-3 p-2 col-md-6 col-lg-4 col-12" style="width: 18rem;">
             <div class="name">
+                  <div class="section">
                 <div class="a"><img src=" ../images/uploads/<%= foundUser.image %>" class="card-img-top" alt=""></div>
                 <h5 class="card-title"><%= foundUser.username %></h5>
+              </div>
+              <div class="delete">
+                <a href="/unlike/<%= post._id %>"class="btn btn-outline-secondary">Delete</a> 
+              </div>
             </div>
             <div class="card-body p-0">
                 <img src="../images/uploads/<%= post.postimage %>" class="card-img-top"  style=" height: 300px;" alt="">
                 <p class="card-text mt-3"><%= post.data %></p>
                 <p style="font-weight: 600;" class="text-primary"><%= post.likes.length %> Likes</p>
                 <a href="/like/<%= post._id %>" class="btn <%= post.likes.indexOf(foundUser.id) === -1 ? 'btn-primary' : 'btn-danger' %>"><%= post.likes.indexOf(foundUser.id) === -1 ? "Like" : "Unlike" %></a>
-                <a href="/unlike/<%= post._id %>"class="btn btn-warning">Delete post</a>     
             </div>
           </div>
           <% }) %>
