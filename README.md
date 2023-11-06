@@ -1,15 +1,15 @@
-BLOGING-WEBSITE 
+# BLOGGING WEBSITE 
 
-Excited to share my latest project 'Bloging'- a Back-end Socal media app application that i had the pleasure of deploying 🚀
+Excited to share my latest project 'Blogging'- a Back-End Socal media app application that I had the pleasure of deploying 🚀
 
-Technology Used - HTML,CSS,javascript,Node js,Express js,MongoDB,passport js and Nodemailer
+Technology Used - HTML, CSS, javascript, Node JS, Express JS, MongoDB, passport JS and Nodemailer
 
-Bloging web having some basic feature like you experinece in socal media ,including:
+Blogging web has some basic features like you experience in socal media, including:
 
-* 🔏 User Authentication : Valid and secure Signup and Login by Using passport js.
-* 🗝️ Forgot Password : Implementing Forgot Password Feature, used by Nodemailer, ensure user 
-can easily reset there old password and login with there new passowrd in profile page.
-* ✍️ Profile Management : User Update there  profile by changing Profile Picure and Updating information.
-* 🖼️ Blog Creation and Deletions: User share there beautyfull moments,throughts and manage blog effortlessly.
-* 📄 Feed Page/profile page: User see all of there Created blog in profile page and all people blog in feed page.
-* ❤️ Social Interactions: User like/dislike there blog like socal media application.
+* 🔏 User Authentication: Valid and secure Signup and Login by Using passport js.
+* 🗝️ Forgot Password: Implementing the Forgot Password Feature, used by Nodemailer, ensures the user 
+can easily reset their old password and log in with their new password on the profile page.
+* ✍️ Profile Management: Users update their  profile by changing their Profile picture and Updating information.
+* 🖼️ Blog Creation and Deletions: Users share their amazing content and thoughts and manage blogs effortlessly.
+* 📄 Feed Page/profile page: Users see all of their Created blogs on the profile page and all people's blogs on the feed page.
+* ❤️ Socal Interactions: Users like/dislike their blogs like social media applications.
