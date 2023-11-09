@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const userModel = require('./users');
 const postModel = require('./posts');
+const CommentModel = require('./comment')
 const passport = require('passport');
 const fs = require("fs");
 const path = require("path");
@@ -11,6 +12,7 @@ const crypto = require("crypto");
 /* GET home page. */
 const localStragety = require('passport-local');
 const mailer = require('../nodemailer');
+const comment = require('./comment');
 passport.use(new localStragety(userModel.authenticate()))
 
 const storage = multer.diskStorage({
@@ -76,12 +78,30 @@ router.post("/resetpass/:userid", async function (req, res, next) {
 
 router.get('/profile', isLoggedIn, function (req, res, next) {
   userModel.findOne({ username: req.session.passport.user })
-  .populate("posts")
+  .populate({
+    path :'posts',
+    populate : {
+      path:'Comments',
+      populate :{
+        path:'userid'
+      }
+    } 
+  })
     .then(function (foundUser) {
       console.log(foundUser);
       res.render("profile", { foundUser: foundUser })
     })
 });
+router.get('/postcomments/:postid', isLoggedIn, function (req, res, next) {
+  CommentModel.find({ postid: req.params.postid })
+    .populate("userid")
+    .then(function (allcommnets) {
+      console.log(allcommnets)
+      res.json({ allcommnets })
+    })
+})
+
+
 
 router.post('/update', isLoggedIn, function (req, res, next) {
   userModel
@@ -111,6 +131,9 @@ router.get('/check/:username', function (req, res, next) {
     }
   })
 });
+
+
+
 router.post('/post',isLoggedIn, upload.single("postimage") ,function (req, res, next) {
   userModel.findOne({username: req.session.passport.user})
   .then(function(foundUser){
@@ -185,11 +208,21 @@ router.get('/feed', isLoggedIn, function (req, res, next) {
     postModel
     .find()
     .populate("userid")
+        .populate({
+          path: 'Comments',
+          populate: {
+            path: 'userid'
+          }
+        })
       .then(function (allposts) {
         res.render("feed", { allposts, user });
       });
   })
 });
+
+
+
+
 
 // router.get('/register', function (req, res, next) {
 //   res.render('register');
@@ -226,6 +259,61 @@ router.post('/register', function (req, res, next) {
     })
 
 })
+
+router.get('/deletecomment/:comId/:postID',isLoggedIn,function(req,res,next){
+  const id = req.params.postID;
+ postModel.findOne({
+  _id:id
+ })
+ .then(function(post){
+    console.log(post)
+  CommentModel.findOne({_id:req.params.comId})
+  .then(function(commenty){
+    console.log(comment)
+    post.Comments.splice(post.Comments.indexOf(commenty))
+    post.save()
+    .then(function(){
+      res.redirect('back')
+    })
+  })
+ })
+  
+  
+})
+
+router.post('/comment/:postid',isLoggedIn,function(req,res,next){
+  userModel.findOne({username: req.session.passport.user})
+  .then(function(foundUser){
+    // console.log(foundUser._id)
+    // find out which post you are commenting
+    const id = req.params.postid;
+         // get the comment text and record user id
+         const comment = new CommentModel({
+          text: req.body.comment,
+          userid: foundUser._id,
+          postid: id
+        })
+        // save comment
+       comment.save()
+       .then(function(){
+           // get this particular post
+           postModel.findById(id)
+          .then(function(postreleated){
+             // push the comment into the post.comments array
+              // save and redirect...
+              postreleated.Comments.push(comment)
+              postreleated.save()
+              .then(function(){
+                //  console.log(postreleated);
+                 res.redirect('back');
+              })
+          }) 
+     })  
+  })
+})
+
+
+
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/profile',

@@ -17,9 +17,10 @@
       <h4 class="mb-4">Feed</h4>
       <p style="margin-top: -22px;">all post from all around the India.</p>
       <hr>
-      <div class="feed">
+      <div class="feed mx-0 d-flex flex-column align-items-center justify-content-center">
+        <h6 class="card-text mb-3 text-center">All User Post : <%= allposts.length %>
       <% allposts.reverse().forEach(function(post){ %>
-        <div class="card m-3 p-2 col-md-6 col-lg-4 col-12 mt-3 col-6" style="width: 18rem;">
+        <div class="card m-3 p-2 col-md-6 col-lg-4 col-12 mt-3 col-6" style="width: 20rem;">
           <div class="name">
             <div class="section">
             <div class="a"><img src=" ../images/uploads/<%= post.userid.image %>" class="card-img-top"></div>
@@ -27,17 +28,51 @@
           </div>
           </div>
           <div class="card-body p-0">
-            <img  src="../images/uploads/<%= post.postimage %>"  style="height: 300px;" class="card-img-top" alt="">
-            <p class="card-text mt-3"><%= post.data %></p>
-            <p style="font-weight: 600;" class="text-primary">
-              <%= post.likes.length %> Likes
-            </p>
-            <a href="/like/<%= post._id %>"
-              class="btn <%= post.likes.indexOf(user.id) === -1 ? 'btn-primary' : 'btn-danger' %>">
-              <%= post.likes.indexOf(user.id)===-1 ? "Like" : "Unlike" %>
-            </a>
+            <img  src="../images/uploads/<%= post.postimage %>"  style="height: 330px;" class="card-img-top" alt="">
+
+            <p class="card-text mt-3">
+              <%= post.data %>
+            </p> 
+            <div class="mb-1 d-flex align-items-center" style="align-items: center;"> 
+             
+              <a href="/like/<%= post._id %>" class="btn <%= post.likes.indexOf(user.id) === -1 ? 'btn-primary' : 'btn-danger' %>">
+                <%= post.likes.indexOf(user.id)===-1 ? "Like" : "Unlike" %>
+              </a>      
+              <p style="font-size: 14px; font-weight: 600;" class="text-primary mb-0 mx-2">
+                <%= post.likes.length %> Likes
+              </p>
+            <p id="showcomment" class="text-primary mb-0 mx-2"
+            style="font-weight: 600;font-size: 14px;">
+            <%= post.Comments.length %> Comments
+            </p> 
+          </div>
+            <form class="mb-2 mt-2 d-flex" id="commentform" action="/comment/<%= post._id %>" method="post">
+              <input id="commentfield" autocomplete="off" type="text" name="comment" class="rounded-1"
+              style="padding: 0px 5px;"   placeholder="write comment..">
+              <input type="submit" class="btn btn-outline-primary ms-2"value="comment" >
+          </form>
+          <ul class="comments mt-2 list-group">
+            <% post.Comments.reverse().forEach(function(com){ %>
+              <li class="my-1 me-2 d-flex align-items-center justify-content-between list-group-item gap-1 ">
+                <div class="mt-2 d-flex gap-1">
+                <img src="../images/uploads/<%=com.userid.image %>"
+                  style="height:1.4rem; width: 1.4rem; border-radius: 50%;" alt="">
+                  <h5 style="font-size: 14px;">
+                    <%=com.userid.username%>
+                  </h5>
+                  <h5 style="font-size: 14px;">
+                    <%= com.text %>
+                  </h5>
+                </div>
+                <a style="text-decoration: none; color: black;" href="/deletecomment/<%=com._id %>/<%= com.postid %>">
+                  <i class="ri-delete-bin-2-line"></i>                
+                </a>
+              </li>
+              <% }) %>
+          </ul>
           </div>
         </div>
+
         <% }) %>
       </div>
     </div>
